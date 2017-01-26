@@ -4,7 +4,8 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-	//this should be the base case which is to deal with all non objects
+	//this is to deal with cases that are not objects or arrays
+	//also to deal with null 
   if (typeof obj !== "object" && typeof obj !== "string") {
   	return ""+ obj
   }
@@ -13,5 +14,16 @@ var stringifyJSON = function(obj) {
   }
   if (typeof obj === "string") {
   	return '"' + obj + '"';
+  }
+  //deals with all arrays
+  if (Array.isArray(obj)) {
+  	if (obj.length !== 0) {
+  		var arrayHolder = [];
+  		obj.forEach(function(value) {
+  			arrayHolder.push(stringifyJSON(value));
+  		});
+  		return "[" + arrayHolder + "]";
+  	}
+  	return '[]';
   }
 };
