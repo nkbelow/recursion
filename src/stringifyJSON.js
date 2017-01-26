@@ -4,7 +4,14 @@
 // but you don't so you're going to write it from scratch:
 
 var stringifyJSON = function(obj) {
-  if (typeof obj !== object) {
-  	return "" + obj;
+	//this should be the base case which is to deal with all non objects
+  if (typeof obj !== "object" && typeof obj !== "string") {
+  	return ""+ obj
+  }
+  if (obj == null) {
+  	return "null";
+  }
+  if (typeof obj === "string") {
+  	return '"' + obj + '"';
   }
 };
